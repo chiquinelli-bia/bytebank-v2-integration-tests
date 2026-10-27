@@ -21,13 +21,18 @@
     "eject": "react-scripts eject"
   },
   "jest": {
+    "testEnvironment": "jsdom",
     "coverageThreshold": {
       "global": {
-        "branchs": 80,
+        "branches": 80,
         "lines": 80,
         "functions": 80,
         "statements": -13
       }
+    },
+    "moduleNameMapper": {
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webkit|svg|ttf|woff|woff2)$": "<rootDir>/src/__mocks__/fileMock.js"
     },
     "transformIgnorePatterns": [
       "node_modules/(?!axios)/"
@@ -52,6 +57,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-react": "^8.0.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -61,6 +67,7 @@
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "identity-obj-proxy": "^3.0.0",
     "prettier": "^2.7.1"
   }
 }
