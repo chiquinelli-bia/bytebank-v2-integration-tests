@@ -23,4 +23,14 @@ describe('./Routes.js', () => {
     const meusCartoes = screen.getByText('Meus cartões');
     expect(meusCartoes).toHaveTextContent('Meus cartões');
   });
+  test('deveria renderizar a localização da rota atual', () => {
+    const rota = '/cartoes';
+    render(
+      <MemoryRouter initialEntries={[rota]}>
+        <App />
+      </MemoryRouter>
+    );
+    const localizacaoAtual = screen.getByTestId('local');
+    expect(localizacaoAtual).toHaveTextContent(rota);
+  });
 });
