@@ -3,6 +3,7 @@ import '@testing-library/jest-dom';
 import { BrowserRouter, MemoryRouter, Route, Routes } from 'react-router-dom';
 import App from './paginas/Principal/App';
 import Cartoes from './componentes/Cartoes';
+import AppRoutes from './routes';
 describe('./Routes.js', () => {
   test('deveria renderizar a rota principal', () => {
     render(<App />, { wrapper: BrowserRouter });
@@ -32,5 +33,15 @@ describe('./Routes.js', () => {
     );
     const localizacaoAtual = screen.getByTestId('local');
     expect(localizacaoAtual).toHaveTextContent(rota);
+  });
+  test('Deve renderizar a página 404', () => {
+    const rota = '/rotaInexistente';
+    render(
+      <MemoryRouter initialEntries={[rota]}>
+        <AppRoutes />
+      </MemoryRouter>
+    );
+    const paginaErro = screen.getByTestId('pagina-404');
+    expect(paginaErro).toContainHTML('<h1>Ops! Não encontramos a página</h1>');
   });
 });
