@@ -43,4 +43,23 @@ describe('App', () => {
     });
     expect(tituloPagCartoes).toBeInTheDocument();
   });
+  test('Deve navegar até a página Investimentos quando o link Investimentos for clicado', async () => {
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <AppRoutes />
+      </MemoryRouter>
+    );
+
+    const linkInvestimentos = screen.getByRole('link', {
+      name: 'Investimentos',
+    });
+    expect(linkInvestimentos).toBeInTheDocument();
+
+    userEvent.click(linkInvestimentos);
+
+    const tituloPagInvestimentos = await screen.findByRole('heading', {
+      name: 'Investimentos',
+    });
+    expect(tituloPagInvestimentos).toBeInTheDocument();
+  });
 });
