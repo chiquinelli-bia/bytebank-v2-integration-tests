@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import api from './api';
-import { buscaTransacoes } from '../services/transacoes';
+import { buscaTransacoes, salvaTransacao } from '../services/transacoes';
 
 jest.mock('./api');
 
@@ -60,5 +60,42 @@ describe('Requisições para API', () => {
     const transacao = await buscaTransacoes();
     expect(transacao).toEqual([]);
     expect(api.get).toHaveBeenCalledWith('/transacoes');
+  });
+  test('Deve retornar uma lista de 2 itens ', async () => {
+    const listaComDoisItens = [
+      mockTransacao[0],
+      {
+        id: 2,
+        transacao: 'Depósito',
+        valor: '200',
+        data: '27/11/2022',
+        mes: 'Novembro',
+      },
+    ];
+
+    // Mock do POST (retorna status 201 de sucesso na criação)
+    api.post.mockImplementation(() => Promise.resolve({ status: 201 }));
+
+    // Mock do GET (retorna a lista com os 2 itens)
+    api.get.mockImplementation(() =>
+      Promise.resolve({ data: listaComDoisItens })
+    );
+
+    // 1. Salva a nova transação
+    const status = await salvaTransacao({
+      transacao: 'Depósito',
+      valor: '200',
+      data: '27/11/2022',
+      mes: 'Novembro',
+    });
+
+    expect(status).toBe(201);
+
+    // 2. Busca a lista atualizada
+    const transacoes = await buscaTransacoes();
+
+    expect(transacoes).toHaveLength(2);
+    expect(api.get).toHaveBeenCalledWith('/transacoes');
+    expect(api.get).toHaveBeenCalledTimes(1);
   });
 });
