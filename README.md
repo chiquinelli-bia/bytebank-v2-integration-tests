@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+![Título: "Bytebank — Testes de Integração & Mocks no Front-end" , SubTítulo: "adaptado por Bianca Chiquinelli"](./thumb.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 🏦 Bytebank
 
-## Available Scripts
+Uma aplicação bancária simulada focada no desenvolvimento de uma suíte robusta de testes unitários e de integração no front-end, validando fluxos de saldo, depósitos, transações e navegação com consumo de API mockada.
 
-In the project directory, you can run:
+## 🎯 Objetivo Técnico
 
-### `npm start`
+Garantir a confiabilidade da aplicação e a integridade do fluxo de dados no front-end por meio de testes automatizados, simulando interações reais do usuário, requisições HTTP assíncronas e gerenciamento de estado de custom hooks sem dependência de um servidor de backend ativo.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🧪 Cobertura & Implementações de Teste
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Testes de Custom Hooks com `renderHook`:** Testes unitários focados na gestão de estado e isolamento da lógica dos hooks `useSaldo` e `useListaTransacoes`.
+- **Mocks de API Assíncrona:** Validação de chamadas HTTP (busca de extrato, atualização de saldo e inclusão de transações), cobrindo cenários de sucesso e tratamento de erros com inline mocks no Jest.
+- **Integração de Fluxos de Interface:** Testes de integração end-to-component simulando a adição de transações no extrato e refletindo as mudanças de estado no saldo em tempo real.
+- **Navegação & Roteamento (`AppRoutes`):** Validação de renderização e troca de rotas (Home, Cartões e tratamento de página 404).
 
-### `npm test`
+## 🛠️ Stack de Testes & Ferramentas
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Jest** — Configuração do ambiente de testes (`jsdom`), suporte a JSX, CSS Modules e mocks de recursos estáticos (SVGs).
+- **React Testing Library** — Testes orientados ao comportamento do usuário e integração de componentes.
+- **`renderHook` (`@testing-library/react`)** — Testes isolados de custom hooks.
 
-### `npm run build`
+## 🚀 Como Executar os Testes
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Clone o repositório:**
+   ```bash
+   git clone [https://github.com/chiquinelli-bia/bytebank-v2-integration-tests.git](https://github.com/chiquinelli-bia/bytebank-v2-integration-tests.git)
+   cd bytebank-v2-integration-tests
+   ```
+2. **Instale as dependências:**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```Bash
+   npm install
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. **Execute a suíte de testes:**
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   ```Bash
+   npm test
+   ```
